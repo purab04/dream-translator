@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 240 15% 8%;
+    --foreground: 260 20% 95%;
+
+    --card: 240 15% 10%;
+    --card-foreground: 260 20% 95%;
+
+    --popover: 240 15% 12%;
+    --popover-foreground: 260 20% 95%;
+
+    --primary: 260 90% 70%;
+    --primary-foreground: 240 15% 8%;
+
+    --secondary: 240 20% 15%;
+    --secondary-foreground: 260 20% 85%;
+
+    --muted: 240 15% 12%;
+    --muted-foreground: 260 10% 65%;
+
+    --accent: 280 80% 65%;
+    --accent-foreground: 240 15% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 20% 20%;
+    --input: 240 20% 15%;
+    --ring: 260 90% 70%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 15% 8%;
+    --sidebar-foreground: 260 20% 85%;
+    --sidebar-primary: 260 90% 70%;
+    --sidebar-primary-foreground: 240 15% 8%;
+    --sidebar-accent: 240 20% 15%;
+    --sidebar-accent-foreground: 260 20% 85%;
+    --sidebar-border: 240 20% 20%;
+    --sidebar-ring: 260 90% 70%;
+
+    /* Cosmic theme colors */
+    --cosmic-50: 260 100% 98%;
+    --cosmic-100: 260 60% 92%;
+    --cosmic-200: 260 50% 85%;
+    --cosmic-300: 260 45% 75%;
+    --cosmic-400: 260 50% 65%;
+    --cosmic-500: 260 60% 55%;
+    --cosmic-600: 260 70% 45%;
+    --cosmic-700: 260 80% 35%;
+    --cosmic-800: 260 85% 25%;
+    --cosmic-900: 260 90% 15%;
+
+    /* Dream theme colors */
+    --dream-purple: 280 80% 65%;
+    --dream-blue: 240 80% 70%;
+    --dream-pink: 320 70% 75%;
+    --dream-indigo: 250 85% 60%;
+    --dream-glow: 260 100% 80%;
+  }
+
+  .dark {
+    --background: 240 20% 5%;
+    --foreground: 260 25% 98%;
+
+    --card: 240 20% 7%;
+    --card-foreground: 260 25% 98%;
+
+    --popover: 240 20% 8%;
+    --popover-foreground: 260 25% 98%;
+
+    --primary: 260 100% 75%;
+    --primary-foreground: 240 20% 5%;
+
+    --secondary: 240 25% 12%;
+    --secondary-foreground: 260 25% 90%;
+
+    --muted: 240 20% 10%;
+    --muted-foreground: 260 15% 70%;
+
+    --accent: 280 85% 70%;
+    --accent-foreground: 240 20% 5%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 260 25% 98%;
+
+    --border: 240 25% 15%;
+    --input: 240 25% 12%;
+    --ring: 260 100% 75%;
+    --sidebar-background: 240 20% 5%;
+    --sidebar-foreground: 260 25% 90%;
+    --sidebar-primary: 260 100% 75%;
+    --sidebar-primary-foreground: 240 20% 5%;
+    --sidebar-accent: 240 25% 12%;
+    --sidebar-accent-foreground: 260 25% 90%;
+    --sidebar-border: 240 25% 15%;
+    --sidebar-ring: 260 100% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(240 25% 12%) 50%, hsl(280 30% 15%) 100%);
+    min-height: 100vh;
+  }
+
+  .cosmic-background {
+    background: radial-gradient(ellipse at top, hsl(260 60% 15%) 0%, hsl(240 20% 8%) 40%, hsl(280 25% 12%) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cosmic-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(280 80% 65% / 0.3) 0%, transparent 20%),
+      radial-gradient(circle at 80% 80%, hsl(240 80% 70% / 0.3) 0%, transparent 20%),
+      radial-gradient(circle at 40% 40%, hsl(320 70% 75% / 0.2) 0%, transparent 20%);
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dream-glow {
+    box-shadow:
+      0 0 20px hsl(var(--dream-glow) / 0.3),
+      0 0 40px hsl(var(--dream-glow) / 0.2),
+      0 0 80px hsl(var(--dream-glow) / 0.1);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--foreground)),
+      hsl(var(--dream-glow)),
+      hsl(var(--foreground))
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .premium-gradient-text {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa, #3b82f6, #60a5fa);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
